@@ -51,13 +51,12 @@ pipeline {
                     def version = readPomVersion.version
                     def artifactPath = "target/ci-cd-${version}.jar"
                     def nexusRepo = readPomVersion.version.endsWith('SNAPSHOT') ? "spring-boot-snapshot" : "sring-boot-release"
-
                     nexusArtifactUploader artifacts: 
                     [
                         [
                             artifactId: 'ci-cd', 
                             classifier: '', 
-                            file: artifactPath, 
+                            file: 'target/ci-cd-0.0.2-SNAPSHOT.jar', 
                             type: 'jar'
                         ]
                     ],
@@ -71,13 +70,12 @@ pipeline {
                 }
             }
         }
-        stage('docker build image')
+        stage('docker image build'){
             steps{
                 script{
-                    sh 'docker image build -t $JOB_NAME:v1.BUILD_ID'
+                    sh 'docker image build -t $JOB_NAME:v1.BUILD_ID .'
                     sh 'docker image tag $JOB_NAME:v1.BUILD_ID anilkumar9993/$JOB_NAME:v1.BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.BUILD_ID anilkumar9993/$JOB_NAME:latest'
-
                 }
             }
         }

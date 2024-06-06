@@ -43,5 +43,27 @@ pipeline {
                 }
             }
         }
+        stage('upload war filr to nexus'){
+            steps{
+                script{
+                    nexusArtifactUploader artifacts: 
+                    [
+                        [
+                            artifactId: 'ci-cd', 
+                            classifier: '', 
+                            file: 'target/ci-cd-0.0.1-SNAPSHOT.jar', 
+                            type: 'jar'
+                        ]
+                    ],
+                    credentialsId: 'Nexus-auth', 
+                    groupId: 'com.example', 
+                    nexusUrl: '3.85.27.149:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'sring-boot-release', 
+                    version: '0.0.1'
+                }
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ pipeline {
                         [
                             artifactId: 'ci-cd', 
                             classifier: '', 
-                            file: 'target/ci-cd-0.0.2-SNAPSHOT.jar', 
+                            file: artifactPath, 
                             type: 'jar'
                         ]
                     ],

@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean install
 
 # Stage 2: Run the application
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar /app/
 

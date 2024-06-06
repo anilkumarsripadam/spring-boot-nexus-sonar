@@ -71,13 +71,13 @@ pipeline {
                 }
             }
         }
-        stage{
+        stage('docker build image')
             steps{
                 script{
                     sh 'docker image build -t $JOB_NAME:v1.BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.BUILD_ID anilkumar9993/$JOB_NAME:v1.BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.BUILD_ID anilkumar9993/$JOB_NAME:latest'
-                    
+
                 }
             }
         }

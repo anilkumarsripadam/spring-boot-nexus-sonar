@@ -49,7 +49,7 @@ pipeline {
 
                     def readPomVersion = readMavenPom file: 'pom.xml'
 
-                    def nexusRepo = readMavenPom.version.endsWith('SNAPSHOT') ? "spring-boot-snapshot" : "sring-boot-release"
+                    def nexusRepo = readPomVersion.version.endsWith('SNAPSHOT') ? "spring-boot-snapshot" : "sring-boot-release"
                     nexusArtifactUploader artifacts: 
                     [
                         [

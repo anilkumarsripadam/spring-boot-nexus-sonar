@@ -48,8 +48,10 @@ pipeline {
                 script{
 
                     def readPomVersion = readMavenPom file: 'pom.xml'
-
+                    def version = readPomVersion.version
+                    def artifactPath = "target/ci-cd-${version}.jar"
                     def nexusRepo = readPomVersion.version.endsWith('SNAPSHOT') ? "spring-boot-snapshot" : "sring-boot-release"
+                    
                     nexusArtifactUploader artifacts: 
                     [
                         [

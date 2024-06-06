@@ -51,13 +51,13 @@ pipeline {
                     def version = readPomVersion.version
                     def artifactPath = "target/ci-cd-${version}.jar"
                     def nexusRepo = readPomVersion.version.endsWith('SNAPSHOT') ? "spring-boot-snapshot" : "sring-boot-release"
-                    
+
                     nexusArtifactUploader artifacts: 
                     [
                         [
                             artifactId: 'ci-cd', 
                             classifier: '', 
-                            file: 'target/ci-cd-0.0.2-SNAPSHOT.jar', 
+                            file: artifactPath, 
                             type: 'jar'
                         ]
                     ],

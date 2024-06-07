@@ -82,9 +82,9 @@ pipeline {
         stage('Docker image push'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'docker-secret-token', variable: 'docker-secret-keyy')]){
-                        sh 'echo ${docker-secret-keyy}'
-                        sh 'docker login -u anilkumar9993 -p ${docker-secret-keyy}'
+                    withCredentials([string(credentialsId: 'docker_token', variable: 'docker_token')]){
+                        sh 'echo ${docker_token}'
+                        sh 'docker login -u anilkumar9993 -p ${docker_token}'
                         sh 'docker image push anilkumar9993/$JOB_NAME:v1.$BUILD_ID'
                         sh 'docker image push anilkumar9993/$JOB_NAME:latest'
                     }

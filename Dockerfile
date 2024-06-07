@@ -10,7 +10,7 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar /app/
 
 # Expose the application port
-EXPOSE 9090
+EXPOSE 8080
 
 # Use a shell command to dynamically identify the JAR file and run it
 CMD ["sh", "-c", "java -jar /app/*.jar"]
